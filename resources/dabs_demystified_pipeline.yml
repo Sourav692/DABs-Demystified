@@ -1,0 +1,15 @@
+# The main pipeline for dabs_demystified
+resources:
+  pipelines:
+    dabs_demystified_pipeline:
+      name: dabs_demystified_pipeline
+      target: dabs_demystified_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      job_clusters:
+        - label: "default"
+          num_workers: 2
+      configuration:
+        bundle.sourcePath: /Workspace/${workspace.file_path}/src
